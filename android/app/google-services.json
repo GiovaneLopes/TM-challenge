@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1077688200865",
+    "firebase_url": "https://insurance-company-a92f1-default-rtdb.firebaseio.com",
+    "project_id": "insurance-company-a92f1",
+    "storage_bucket": "insurance-company-a92f1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1077688200865:android:d9954cd52e2c1d532b8ae0",
+        "android_client_info": {
+          "package_name": "com.example.tm_challenge"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_2CXzTxKTFg8Af3_E1vNc9ux366ZCobs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
