@@ -11,15 +11,17 @@ class SocialButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = MediaQuery.of(context).size.width < 700;
+    final width = MediaQuery.of(context).size.width;
     return InkWell(
       borderRadius: BorderRadius.circular(50.w),
       onTap: () {},
       child: Container(
-        padding: EdgeInsets.all(8.w),
+        padding: EdgeInsets.all(isMobile ? 8.w : width * 0.0015),
         child: Image.asset(
           image,
-          width: 24.w,
-          height: 24.w,
+          width: isMobile ? 24.w : width * 0.015,
+          height: isMobile ? 24.w : width * 0.015,
         ),
       ),
     );

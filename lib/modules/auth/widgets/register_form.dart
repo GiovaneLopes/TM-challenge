@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tm_challenge/modules/auth/bloc/auth_bloc.dart';
 import 'package:tm_challenge/modules/shared/resources/colors.dart';
 import 'package:tm_challenge/libs/modules/user/models/user_model.dart';
+import 'package:tm_challenge/modules/shared/utils/app_size_helper.dart';
 import 'package:tm_challenge/modules/shared/utils/input_validator.dart';
 import 'package:tm_challenge/modules/shared/utils/input_formatters.dart';
 import 'package:tm_challenge/modules/shared/widgets/custom_text_form_field.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+class RegisterForm extends StatefulWidget {
+  const RegisterForm({super.key});
 
   @override
-  State<RegisterPage> createState() => _RegisterPageState();
+  State<RegisterForm> createState() => _RegisterFormState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _RegisterFormState extends State<RegisterForm> {
   final bloc = Modular.get<AuthBloc>();
   final _formKey = GlobalKey<FormState>();
   final cpfController = TextEditingController();
@@ -33,43 +35,23 @@ class _RegisterPageState extends State<RegisterPage> {
     super.dispose();
   }
 
-  void _register() {
-    if (_formKey.currentState!.validate()) {
-      bloc.register(
-        UserModel(
-          id: cpfController.text,
-          name: nameController.text,
-          email: emailController.text,
-          cpf: cpfController.text,
-        ),
-        passwordController.text,
-      );
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: const BackButton(),
-        title: const Text(
-          'Registrar',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
-      body: BlocBuilder<AuthBloc, AuthState>(
-          bloc: bloc,
-          builder: (context, state) {
-            return SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Form(
-                key: _formKey,
-                child: Column(
+    return BlocBuilder<AuthBloc, AuthState>(
+      bloc: bloc,
+      builder: (context, state) {
+        return Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: SizeHelper.adaptiveSize(context, 16.w, 0.007),
+          ),
+          child: Form(
+            key: _formKey,
+            child: Stack(
+              clipBehavior: Clip.none,
+              alignment: Alignment.center,
+              children: [
+                Column(
                   children: [
-                    const SizedBox(height: 24),
                     CustomTextFormField(
                       controller: cpfController,
                       hintText: 'CPF',
@@ -112,36 +94,66 @@ class _RegisterPageState extends State<RegisterPage> {
                       controller: confirmPasswordController,
                     ),
                     const SizedBox(height: 32),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 56,
-                      child: ElevatedButton(
-                        onPressed: _register,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              Theme.of(context).primaryColor, // azul
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(28),
-                          ),
-                        ),
-                        child: state.status == AuthStatus.loading
-                            ? const CircularProgressIndicator(
-                                color: AppColors.textPrimary)
-                            : const Text(
-                                'Registrar',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                  color: AppColors.textPrimary,
-                                ),
-                              ),
-                      ),
-                    ),
                   ],
                 ),
-              ),
-            );
-          }),
+                Positioned(
+                  bottom: -45.h,
+                  child: Center(
+                    child: GestureDetector(
+                      onTap: () {
+                        if (_formKey.currentState?.validate() ?? false) {
+                          bloc.register(
+                            UserModel(
+                              id: cpfController.text,
+                              name: nameController.text,
+                              email: emailController.text,
+                              cpf: cpfController.text,
+                            ),
+                            passwordController.text,
+                          );
+                        }
+                      },
+                      child: Container(
+                        width: SizeHelper.adaptiveSize(context, 64.w, 0.028),
+                        height: SizeHelper.adaptiveSize(context, 64.h, 0.028),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: AppColors.cardBackground,
+                            width:
+                                SizeHelper.adaptiveSize(context, 6.w, 0.0025),
+                          ),
+                          gradient: const LinearGradient(
+                            colors: [
+                              AppColors.primary,
+                              AppColors.primary,
+                              AppColors.secondary
+                            ],
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                          ),
+                        ),
+                        child: Center(
+                          child: Modular.get<AuthBloc>().state.status ==
+                                  AuthStatus.loading
+                              ? const CircularProgressIndicator(
+                                  color: AppColors.textPrimary)
+                              : Icon(
+                                  Icons.arrow_forward,
+                                  color: AppColors.textPrimary,
+                                  size: SizeHelper.adaptiveSize(
+                                      context, 32.w, 0.01),
+                                ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

@@ -5,6 +5,7 @@ import 'package:tm_challenge/modules/auth/bloc/auth_bloc.dart';
 import 'package:tm_challenge/modules/shared/resources/colors.dart';
 import 'package:tm_challenge/modules/shared/resources/images.dart';
 import 'package:tm_challenge/libs/modules/user/bloc/user_bloc.dart';
+import 'package:tm_challenge/modules/shared/utils/app_size_helper.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -24,7 +25,10 @@ class CustomDrawer extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.only(
-                  left: 16.w, right: 16.w, top: 48.h, bottom: 12.h),
+                  left: SizeHelper.adaptiveSize(context, 16.w, 0.0025),
+                  right: SizeHelper.adaptiveSize(context, 16.w, 0.0025),
+                  top: SizeHelper.adaptiveSize(context, 48.h, 0.0075),
+                  bottom: SizeHelper.adaptiveSize(context, 12.h, 0.002)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -32,7 +36,7 @@ class CustomDrawer extends StatelessWidget {
                     'Olá!',
                     style: TextStyle(color: AppColors.textPrimary),
                   ),
-                  SizedBox(height: 8.h),
+                  SizedBox(height: SizeHelper.adaptiveSize(context, 8.h, 0.01)),
                   Row(
                     children: [
                       const CircleAvatar(
@@ -40,7 +44,8 @@ class CustomDrawer extends StatelessWidget {
                           AppImages.userAvatar,
                         ),
                       ),
-                      SizedBox(width: 8.w),
+                      SizedBox(
+                          width: SizeHelper.adaptiveSize(context, 8.w, 0.001)),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -51,7 +56,8 @@ class CustomDrawer extends StatelessWidget {
                             style: TextStyle(
                               color: AppColors.textPrimary,
                               fontWeight: FontWeight.bold,
-                              fontSize: 16.sp,
+                              fontSize: SizeHelper.adaptiveSize(
+                                  context, 16.sp, 0.0045),
                             ),
                           ),
                           Row(
@@ -62,7 +68,8 @@ class CustomDrawer extends StatelessWidget {
                               ),
                               Icon(
                                 Icons.arrow_drop_down_rounded,
-                                size: 24.w,
+                                size: SizeHelper.adaptiveSize(
+                                    context, 24.w, 0.006),
                                 color: AppColors.textPrimary,
                               ),
                             ],
@@ -76,90 +83,118 @@ class CustomDrawer extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.settings, color: AppColors.primary),
-              title: Text('Home/Seguro',
-                  style:
-                      TextStyle(color: AppColors.textPrimary, fontSize: 12.sp)),
+              title: Text(
+                'Home/Seguro',
+                style: TextStyle(
+                  color: AppColors.textPrimary,
+                  fontSize: SizeHelper.adaptiveSize(context, 12.sp, 0.0045),
+                ),
+              ),
               onTap: () {},
             ),
             ListTile(
               leading: const Icon(Icons.settings, color: AppColors.primary),
               title: Text('Minhas Contratações',
-                  style:
-                      TextStyle(color: AppColors.textPrimary, fontSize: 12.sp)),
+                  style: TextStyle(
+                      color: AppColors.textPrimary,
+                      fontSize:
+                          SizeHelper.adaptiveSize(context, 12.sp, 0.0045))),
               onTap: () {},
             ),
             ListTile(
               leading: const Icon(Icons.settings, color: AppColors.primary),
               title: Text('Meus Sinistros',
-                  style:
-                      TextStyle(color: AppColors.textPrimary, fontSize: 12.sp)),
+                  style: TextStyle(
+                      color: AppColors.textPrimary,
+                      fontSize:
+                          SizeHelper.adaptiveSize(context, 12.sp, 0.0045))),
               onTap: () {},
             ),
             ListTile(
               leading: const Icon(Icons.settings, color: AppColors.primary),
               title: Text('Minha Família',
-                  style:
-                      TextStyle(color: AppColors.textPrimary, fontSize: 12.sp)),
+                  style: TextStyle(
+                      color: AppColors.textPrimary,
+                      fontSize:
+                          SizeHelper.adaptiveSize(context, 12.sp, 0.0045))),
               onTap: () {},
             ),
             ListTile(
               leading: const Icon(Icons.settings, color: AppColors.primary),
               title: Text('Meus Bens',
-                  style:
-                      TextStyle(color: AppColors.textPrimary, fontSize: 12.sp)),
+                  style: TextStyle(
+                      color: AppColors.textPrimary,
+                      fontSize:
+                          SizeHelper.adaptiveSize(context, 12.sp, 0.0045))),
               onTap: () {},
             ),
             ListTile(
               leading: const Icon(Icons.settings, color: AppColors.primary),
               title: Text('Pagamentos',
-                  style:
-                      TextStyle(color: AppColors.textPrimary, fontSize: 12.sp)),
+                  style: TextStyle(
+                      color: AppColors.textPrimary,
+                      fontSize:
+                          SizeHelper.adaptiveSize(context, 12.sp, 0.0045))),
               onTap: () {},
             ),
             ListTile(
               leading: const Icon(Icons.settings, color: AppColors.primary),
               title: Text('Coberturas',
-                  style:
-                      TextStyle(color: AppColors.textPrimary, fontSize: 12.sp)),
+                  style: TextStyle(
+                      color: AppColors.textPrimary,
+                      fontSize:
+                          SizeHelper.adaptiveSize(context, 12.sp, 0.0045))),
               onTap: () {},
             ),
             ListTile(
               leading: const Icon(Icons.settings, color: AppColors.primary),
               title: Text('Validar Boleto',
-                  style:
-                      TextStyle(color: AppColors.textPrimary, fontSize: 12.sp)),
+                  style: TextStyle(
+                      color: AppColors.textPrimary,
+                      fontSize:
+                          SizeHelper.adaptiveSize(context, 12.sp, 0.0045))),
               onTap: () {},
             ),
             ListTile(
               leading: const Icon(Icons.settings, color: AppColors.primary),
               title: Text('Telefones Importantes',
-                  style:
-                      TextStyle(color: AppColors.textPrimary, fontSize: 12.sp)),
+                  style: TextStyle(
+                      color: AppColors.textPrimary,
+                      fontSize:
+                          SizeHelper.adaptiveSize(context, 12.sp, 0.0045))),
               onTap: () {},
             ),
             ListTile(
               leading: const Icon(Icons.settings, color: AppColors.primary),
               title: Text('Configurações',
-                  style:
-                      TextStyle(color: AppColors.textPrimary, fontSize: 12.sp)),
+                  style: TextStyle(
+                      color: AppColors.textPrimary,
+                      fontSize:
+                          SizeHelper.adaptiveSize(context, 12.sp, 0.0045))),
               onTap: () {},
             ),
             GestureDetector(
               onTap: Modular.get<AuthBloc>().signOut,
               child: Padding(
-                padding: EdgeInsets.only(left: 16.w),
+                padding: EdgeInsets.only(
+                    left: SizeHelper.adaptiveSize(context, 16.w, 0.008)),
                 child: Text(
                   'Sair',
                   style: TextStyle(
                       color: AppColors.primary,
-                      fontSize: 12.sp,
+                      fontSize: SizeHelper.adaptiveSize(context, 12.sp, 0.0045),
                       fontWeight: FontWeight.bold),
                 ),
               ),
             ),
-            const Expanded(child: SizedBox()),
+            SizeHelper.isMobile(context)
+                ? const Expanded(child: SizedBox())
+                : SizedBox(
+                    height: 24.h,
+                  ),
             Container(
-              padding: EdgeInsets.symmetric(vertical: 22.w),
+              padding: EdgeInsets.symmetric(
+                  vertical: SizeHelper.adaptiveSize(context, 22.w, 0.008)),
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
@@ -178,15 +213,20 @@ class CustomDrawer extends StatelessWidget {
                   Text(
                     'Dúvidas?',
                     style: TextStyle(
-                        color: AppColors.textPrimary, fontSize: 10.sp),
+                        color: AppColors.textPrimary,
+                        fontSize:
+                            SizeHelper.adaptiveSize(context, 10.sp, 0.0045)),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.w),
+                    padding: EdgeInsets.symmetric(
+                        horizontal:
+                            SizeHelper.adaptiveSize(context, 16.w, 0.008)),
                     child: Text(
                       'Converse com a gente e tire suas dúvidas sobre seguros!',
                       style: TextStyle(
                         color: AppColors.textPrimary,
-                        fontSize: 10.sp,
+                        fontSize:
+                            SizeHelper.adaptiveSize(context, 10.sp, 0.0045),
                       ),
                       textAlign: TextAlign.center,
                     ),

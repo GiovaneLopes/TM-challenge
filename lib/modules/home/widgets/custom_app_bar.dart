@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tm_challenge/modules/shared/resources/colors.dart';
 import 'package:tm_challenge/modules/shared/resources/images.dart';
+import 'package:tm_challenge/modules/shared/utils/app_size_helper.dart';
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -23,7 +24,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               icon: Icon(
                 Icons.menu,
                 color: AppColors.textPrimary,
-                size: 32.w,
+                size: SizeHelper.adaptiveSize(context, 32.w, 0.01),
               ),
               onPressed: () {
                 Scaffold.of(context).openDrawer();
@@ -32,13 +33,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       title: Image.asset(
         AppImages.logoWhite,
-        width: 112.h,
+        width: SizeHelper.adaptiveSize(context, 112.h, 0.05),
       ),
       centerTitle: true,
       actions: [
         IconButton(
-          icon: Icon(Icons.notifications_none_outlined,
-              color: AppColors.textPrimary, size: 32.w),
+          icon: Icon(
+            Icons.notifications_none_outlined,
+            color: AppColors.textPrimary,
+            size: SizeHelper.adaptiveSize(context, 32.w, 0.01),
+          ),
           onPressed: () {},
         ),
       ],

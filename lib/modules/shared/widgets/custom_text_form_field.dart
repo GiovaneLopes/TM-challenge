@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tm_challenge/modules/shared/resources/colors.dart';
+import 'package:tm_challenge/modules/shared/utils/app_size_helper.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final TextEditingController controller;
@@ -31,32 +32,42 @@ class CustomTextFormField extends StatelessWidget {
       height: 56.h,
       child: TextFormField(
         controller: controller,
+        focusNode: FocusNode(),
         obscureText: obscureText,
         keyboardType: keyboardType,
         validator: validator,
         onChanged: onChanged,
         textAlign: TextAlign.center,
         inputFormatters: inputFormatters,
-        style: TextStyle(color: AppColors.textPrimary, fontSize: 14.sp),
+        style: TextStyle(
+            color: AppColors.textPrimary,
+            fontSize: SizeHelper.adaptiveSize(context, 14.sp, 0.005)),
         decoration: InputDecoration(
           border: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColors.textPrimary, width: 1.w),
+            borderSide: BorderSide(
+                color: AppColors.textPrimary,
+                width: SizeHelper.adaptiveSize(context, 1.w, 0.00018)),
             borderRadius: BorderRadius.all(Radius.circular(50.r)),
           ),
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColors.textPrimary, width: 1.w),
+            borderSide: BorderSide(
+                color: AppColors.textPrimary,
+                width: SizeHelper.adaptiveSize(context, 1.w, 0.00018)),
             borderRadius: BorderRadius.all(Radius.circular(50.r)),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColors.textPrimary, width: 1.w),
+            borderSide: BorderSide(
+                color: AppColors.textPrimary,
+                width: SizeHelper.adaptiveSize(context, 1.w, 0.00018)),
             borderRadius: BorderRadius.all(Radius.circular(50.r)),
           ),
           filled: true,
           fillColor: Colors.transparent,
           hintText: hintText,
           labelStyle: const TextStyle(color: AppColors.textPrimary),
-          hintStyle: const TextStyle(
+          hintStyle: TextStyle(
             color: AppColors.textPrimary,
+            fontSize: SizeHelper.adaptiveSize(context, 14.sp, 0.005),
           ),
           alignLabelWithHint: true,
           contentPadding:
